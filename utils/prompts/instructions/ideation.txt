@@ -1,0 +1,5 @@
+Your task is to generate some statements regarding the learning objectives of <concept> in the area of <field>. The statements should cover the <level> level in Bloom's Taxonomy. Each statement should start with a verb. Present the knowledge in a bullet list started with '-'.
+###
+The definitions of the <level> level in Bloom's Taxonomy are: 
+<definition>
+###

@@ -1,0 +1,5 @@
+Analyze: Break material into its constituent part and determine how the parts relate to one another and to an overall structure or purpose
+
+- Differentiating: Distinguishing relevant from irrelevant parts or important from unimportant parts of presented material (e.g., Distinguish between relevant and irrelevant numbers in a mathematical word problem)
+- Organizing: Determining how elements fit or function within a structure (e.g., Structure evidence in a historical description into evidence for and against a particular historical explanation)
+- Attributing: Determine a point of view, bias, values, or intent underlying presented material (e.g., Determine the point of view of the author of an essay in terms of his or her political perspective)

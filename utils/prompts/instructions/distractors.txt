@@ -1,0 +1,5 @@
+Your task is to generate several distractors regarding the statament "<source> <label> <target>". Make sure that each distractor is only one sentence which has similar formats but wrong meanings compared with the original sentence. Present the distractors in a bullet list started with '-'. The distractors should be as brief as possible.
+###
+The distractors should be generated based on the following rules.
+<heuristics>
+###

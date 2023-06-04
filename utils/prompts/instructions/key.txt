@@ -1,0 +1,1 @@
+Your task is to generate a coherent statement regarding symmetric encryption in cybersecurity based on the source object, target object and relationship below. The source object in the statement is <source>. The target object in the statement is <target>. The relationship between the source object and the target object is <label>. The statement should be as brief as possible.

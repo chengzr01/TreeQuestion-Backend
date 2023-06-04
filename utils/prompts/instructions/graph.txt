@@ -1,0 +1,6 @@
+Create an ontology on the concepts of <concept> in the field of <field> based on the following text. Create a list of relations with 3 columns in this order: source, target, relation. Merge the sources or targets with the same relations only in one row.
+###
+<text>
+###
+| Source | Target | Relation |
+| ------ | ------ | -------- |
