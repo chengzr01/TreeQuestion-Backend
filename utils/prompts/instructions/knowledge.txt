@@ -1,4 +1,4 @@
-Here are some statements regarding the learning objectives of <concept> in the area of <field>. Your task is to list some knowledge to explain these statements. Make sure the knowledge are direct and brief. The knowledge should cover the <level> level in Bloom's Taxonomy. Present the knowledge in a bullet list started with '-'.
+Here are some statements regarding the learning objectives of <concept> in the area of <field>. You task is to give some concrete explainations or detailed knowledge according to these statements. The explainations should cover the <level> level in Bloom's Taxonomy. Present the explainations in a bullet list started with '-'.
 ###
 <ideation>
 ###

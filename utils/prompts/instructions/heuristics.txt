@@ -1,4 +1,4 @@
-Your task is to generate three concrete rules for teachers to write the distractors in multiple-choice questions regarding the statament "<source> <label> <target>". The rules for creating the distractors should be based on the relationship between the subject and the object presented in the statament. Present the rules in a bullet list started with '-'.
+Your task is to generate three concrete rules for teachers to write the distractors in multiple-choice questions regarding the statament "<key>". The rules for creating the distractors should be based on the relationship between the subject and the object presented in the statament. The target object in the statement is <target>. The relationship between the source object and the target object is <label>. Present the rules in a bullet list started with '-'.
 ###
 The statament might be tested in the form of the following question template. 
 <template>

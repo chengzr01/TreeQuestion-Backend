@@ -18,5 +18,6 @@ urlpatterns = [
          name="create_distractor_statement"),
     path("create_question", views.create_question, name="create_question"),
     path("create_tree", views.create_tree, name="create_tree"),
-    path("read_tree", views.read_tree, name="read_tree")
+    path("read_tree", views.read_tree, name="read_tree"),
+    path("delete_tree", views.delete_tree, name="delete_tree")
 ]

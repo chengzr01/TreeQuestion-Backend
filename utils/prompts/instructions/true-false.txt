@@ -1,11 +1,6 @@
-Your task is to generate a multi-true-false question regarding <concept> in the area of <context>. The question should cover the <level> level in Bloom's Taxonomy. The purpose of this question is to test whether students can <goal>
-###
-You should follow the rules below:
-- Use declarative sentences instead of interrogative sentences.
-- Use specific examples or scenarios.
-###
-Here are some knowledge which may be tested in this question.
-<knowledge>
+Your task is to generate a multi-true-false question regarding <concept> in the area of <context>. The question should cover the <level> level in Bloom's Taxonomy. Use specific scenarios, stories, and examples in the real-world to create the question.
+[distractors-part]
+[keys-part]
 ###
 Question: <Question>
 

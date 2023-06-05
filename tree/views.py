@@ -51,13 +51,15 @@ def create_knowledge_component(request):
         prompt = prompt.replace("<level>", level)
         prompt = prompt.replace("<ideation>", ideation)
         knowledge = chat_gpt.call(prompt)
-        return JsonResponse({
-            'code': 200,
-            'data': {
-                'knowledge': knowledge,
-            }
-        },
-                            status=200)
+        return JsonResponse(
+            {
+                'code': 200,
+                'data': {
+                    'ideation': ideation,
+                    'knowledge': knowledge,
+                }
+            },
+            status=200)
 
 
 def create_knowledge_graph(request):
@@ -146,9 +148,16 @@ def create_distractor_statement(request):
             },
                                 status=400)
         chat_gpt = ChatGPT()
+        # stage 1: create keys
+        key_prompt = retrieve_prompt_prefix("instructions")["key"]
+        key_prompt = key_prompt.replace("<source>", source)
+        key_prompt = key_prompt.replace("<target>", target)
+        key_prompt = key_prompt.replace("<label>", label)
+        key = chat_gpt.call(key_prompt)
         # stage 1: create heuristics
         heuristics_prompt = retrieve_prompt_prefix(
             "instructions")["heuristics"]
+        heuristics_prompt = heuristics_prompt.replace("<key>", key)
         heuristics_prompt = heuristics_prompt.replace("<source>", source)
         heuristics_prompt = heuristics_prompt.replace("<label>", label)
         heuristics_prompt = heuristics_prompt.replace("<target>", target)
@@ -157,6 +166,7 @@ def create_distractor_statement(request):
         # stage 2: create distractors
         distractors_prompt = retrieve_prompt_prefix(
             "instructions")["distractors"]
+        distractors_prompt = distractors_prompt.replace("<key>", key)
         distractors_prompt = distractors_prompt.replace("<source>", source)
         distractors_prompt = distractors_prompt.replace("<label>", label)
         distractors_prompt = distractors_prompt.replace("<target>", target)
@@ -167,6 +177,10 @@ def create_distractor_statement(request):
             {
                 'code': 200,
                 'data': {
+                    'key':
+                    key,
+                    'heuristics':
+                    heuristics,
                     'distractors': [
                         distractor.split("- ")[-1]
                         for distractor in distractors.split("\n")
@@ -202,12 +216,27 @@ def create_question(request):
         if (qtype == "Multi-Choice"):
             question_prompt = retrieve_prompt_prefix(
                 "instructions")["multiple-choice"]
-            question_prompt = question_prompt.replace("<concept>", concept)
-            question_prompt = question_prompt.replace("<field>", field)
-            question_prompt = question_prompt.replace("<level>", level)
+        else:
+            question_prompt = retrieve_prompt_prefix(
+                "instructions")["true-false"]
+        question_prompt = question_prompt.replace("<concept>", concept)
+        question_prompt = question_prompt.replace("<field>", field)
+        question_prompt = question_prompt.replace("<level>", level)
+        if len(keys) > 0:
+            keys_part = retrieve_prompt_prefix("instructions")["keys-part"]
+            question_prompt = question_prompt.replace("[keys-part]", keys_part)
             question_prompt = question_prompt.replace("<keys>", key_text)
+        else:
+            question_prompt = question_prompt.replace("[keys-part]", "")
+        if len(distractors) > 0:
+            distractors_part = retrieve_prompt_prefix(
+                "instructions")["distractors-part"]
+            question_prompt = question_prompt.replace("[distractors-part]",
+                                                      distractors_part)
             question_prompt = question_prompt.replace("<distractors>",
                                                       distractor_text)
+        else:
+            question_prompt = question_prompt.replace("[distractors-part]", "")
         question = chat_gpt.call(question_prompt)
         stem = question.split("Question:")[-1].split("\n\nOptions:")[0]
         options = []
@@ -220,6 +249,7 @@ def create_question(request):
             {
                 'code': 200,
                 'data': {
+                    'prompt': question_prompt,
                     'stem': stem,
                     "options": options,
                     "answer": answer
@@ -234,6 +264,7 @@ def create_tree(request):
             body = json.loads(request.body)
             name = body["name"]
             role = body["role"]
+            identifier = body["identifier"]
             description = body["description"]
         except ValueError:
             return JsonResponse({
@@ -242,7 +273,7 @@ def create_tree(request):
             },
                                 status=400)
         user = User.objects.filter(name=name, role=role).first()
-        tree = Tree(user=user, description=description)
+        tree = Tree(user=user, description=description, identifier=identifier)
         tree.full_clean()
         tree.save()
         return JsonResponse({
@@ -270,7 +301,37 @@ def read_tree(request):
             {
                 'code':
                 200,
-                'data':
-                [tree.description for tree in Tree.objects.filter(user=user)]
+                'data': [{
+                    'identifier': tree.identifier,
+                    'description': tree.description
+                } for tree in Tree.objects.filter(user=user)]
             },
             status=200)
+
+
+def delete_tree(request):
+    if request.method == "POST":
+        try:
+            body = json.loads(request.body)
+            name = body["name"]
+            role = body["role"]
+            identifier = body["identifier"]
+            description = body["description"]
+        except ValueError:
+            return JsonResponse({
+                'code': 400,
+                'data': "Format Error"
+            },
+                                status=400)
+
+        user = User.objects.filter(name=name, role=role).first()
+        tree = Tree.objects.filter(user=user,
+                                   identifier=identifier,
+                                   description=description).first()
+        if tree:
+            tree.delete()
+        return JsonResponse({
+            'code': 200,
+            'data': "Deleting tree succeeded!"
+        },
+                            status=200)
