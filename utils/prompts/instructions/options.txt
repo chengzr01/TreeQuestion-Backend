@@ -1,0 +1,14 @@
+Your task is to extract the option part from the multiple-choice question below. Present the options in a bullet list started with the corresponding uppercase letters.
+<question>
+###
+The multiple-choice question follows the template below.
+Question: <stem>
+
+A. <option>
+B. <option>
+C. <option>
+D. <option>
+
+Answer: <answer>
+###
+Options:

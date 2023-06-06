@@ -1,0 +1,14 @@
+Your task is to extract the stem from the multiple-choice question below.
+<question>
+###
+The multiple-choice question follows the template below.
+Question: <stem>
+
+A. <option>
+B. <option>
+C. <option>
+D. <option>
+
+Answer: <answer>
+###
+Stem:

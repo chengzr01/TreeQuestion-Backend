@@ -1,0 +1,4 @@
+Your task is to extract the answer part from the multiple-choice question below. Present the answer option in single uppercase letters.
+<question>
+###
+Answer:

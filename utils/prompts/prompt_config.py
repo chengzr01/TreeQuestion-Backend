@@ -13,6 +13,9 @@ PROMPT_CONFIGS: Final[dict] = {
         "keys-part": "./utils/prompts/instructions/keys-part.txt",
         "true-false": "./utils/prompts/instructions/true-false.txt",
         "multiple-choice": "./utils/prompts/instructions/multiple-choice.txt",
+        "stem": "./utils/prompts/instructions/stem.txt",
+        "options": "./utils/prompts/instructions/options.txt",
+        "answer": "./utils/prompts/instructions/answer.txt",
     },
     "taxonomy": {
         "remember": "./utils/prompts/taxonomy/remember.txt",
