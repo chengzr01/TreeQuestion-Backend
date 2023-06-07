@@ -333,18 +333,12 @@ def create_question(request):
                     "[distractors-part]", "")
             question = chat_gpt.call(question_prompt)
             stem = question.split("Question:")[-1].split("\n\nOptions:")[0]
-            # options = []
-            # for question_item in question.split("Options:")[-1].split(
-            #         "\n\nAnswer:")[0].split("\n"):
-            #     if len(question_item) > 0:
-            #         options.append(question_item)
-            # answer = question.split("Answer:")[-1].split("\n")[0]
             stem_prompt = retrieve_prompt_prefix("instructions")["stem"]
             stem_prompt = stem_prompt.replace("<question>", question)
             stem = chat_gpt.call(stem_prompt)
             options_prompt = retrieve_prompt_prefix("instructions")["options"]
             options_prompt = options_prompt.replace("<question>", question)
-            options = chat_gpt.call(options_prompt)
+            options = chat_gpt.call(options_prompt).split("\n")
             answer_prompt = retrieve_prompt_prefix("instructions")["answer"]
             answer_prompt = answer_prompt.replace("<question>", question)
             answer = chat_gpt.call(answer_prompt)
