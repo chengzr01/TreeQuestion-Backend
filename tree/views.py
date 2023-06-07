@@ -23,6 +23,10 @@ def index(request):
     return JsonResponse({'code': 200, 'data': "Hello"}, status=200)
 
 
+def refresh():
+    print("refresh")
+
+
 def create_knowledge_component(request):
     if request.method == 'POST':
         try:
