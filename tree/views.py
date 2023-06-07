@@ -15,7 +15,7 @@ def create_knowledge_component(request):
         try:
             body = json.loads(request.body)
             if "cache" in body:
-                cache = body["cache"]
+                cache = False if body["cache"] == "false" else True
             else:
                 cache = True
             concept = body["concept"].lower()
@@ -74,7 +74,7 @@ def create_knowledge_graph(request):
         try:
             body = json.loads(request.body)
             if "cache" in body:
-                cache = body["cache"]
+                cache = False if body["cache"] == "false" else True
             else:
                 cache = True
             concepts = body["concepts"]
@@ -146,7 +146,7 @@ def create_key_statement(request):
         try:
             body = json.loads(request.body)
             if "cache" in body:
-                cache = body["cache"]
+                cache = False if body["cache"] == "false" else True
             else:
                 cache = True
             source = body["source"]
@@ -187,7 +187,7 @@ def create_distractor_statement(request):
         try:
             body = json.loads(request.body)
             if "cache" in body:
-                cache = body["cache"]
+                cache = False if body["cache"] == "false" else True
             else:
                 cache = True
             source = body["source"]
@@ -268,7 +268,7 @@ def create_question(request):
         try:
             body = json.loads(request.body)
             if "cache" in body:
-                cache = body["cache"]
+                cache = False if body["cache"] == "false" else True
             else:
                 cache = True
             concept = body["concept"].lower()
