@@ -1,7 +1,8 @@
 import json
 from datetime import *
-from .models import *
 from django.http import JsonResponse
+
+from .models import *
 from user.models import User
 from utils.models.chatgpt import ChatGPT
 from utils.prompts.prompt_config import retrieve_prompt_prefix
