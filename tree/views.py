@@ -1,30 +1,12 @@
 import json
 from datetime import *
+from .models import *
 from django.http import JsonResponse
+from user.models import User
 from utils.models.chatgpt import ChatGPT
 from utils.prompts.prompt_config import retrieve_prompt_prefix
-from .models import Tree, Knowledge, Graph, Key, Distractor, Question
-from user.models import User
 
 # Create your views here.
-
-
-def gen_list_from_text(text):
-    result_list = []
-    for result in text.split("- "):
-        if len(result) <= 0:
-            continue
-        result_list.append(
-            result.lower() if result[-1] != "\n" else result[:-1].lower())
-    return result_list
-
-
-def index(request):
-    return JsonResponse({'code': 200, 'data': "Hello"}, status=200)
-
-
-def refresh():
-    print("refresh")
 
 
 def create_knowledge_component(request):
