@@ -301,7 +301,7 @@ def create_question(request):
 
         if old_cache and cache:
             stem = old_cache.stem
-            options = old_cache.options
+            options = old_cache.options.split("\n")
             answer = old_cache.answer
         else:
             chat_gpt = ChatGPT()
