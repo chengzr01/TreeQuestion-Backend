@@ -301,7 +301,7 @@ def create_question(request):
 
         if old_cache and cache:
             stem = old_cache.stem
-            options = old_cache.options.split("\n")
+            options = old_cache.options
             answer = old_cache.answer
         else:
             chat_gpt = ChatGPT()
@@ -338,7 +338,7 @@ def create_question(request):
             stem = chat_gpt.call(stem_prompt)
             options_prompt = retrieve_prompt_prefix("instructions")["options"]
             options_prompt = options_prompt.replace("<question>", question)
-            options = chat_gpt.call(options_prompt).split("\n")
+            options = chat_gpt.call(options_prompt)
             answer_prompt = retrieve_prompt_prefix("instructions")["answer"]
             answer_prompt = answer_prompt.replace("<question>", question)
             answer = chat_gpt.call(answer_prompt)
@@ -359,7 +359,7 @@ def create_question(request):
                 'code': 200,
                 'data': {
                     'stem': stem,
-                    "options": options,
+                    "options": options.split("\n"),
                     "answer": answer
                 }
             },
