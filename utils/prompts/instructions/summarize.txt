@@ -1,0 +1,4 @@
+Here are some statements of knowledge regarding of <concept> in the area of <field>. You task is to summarize these statements within 1024 tokens.
+###
+<knowledge>
+###

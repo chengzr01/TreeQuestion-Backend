@@ -16,6 +16,7 @@ PROMPT_CONFIGS: Final[dict] = {
         "stem": "./utils/prompts/instructions/stem.txt",
         "options": "./utils/prompts/instructions/options.txt",
         "answer": "./utils/prompts/instructions/answer.txt",
+        "summarize": "./utils/prompts/instructions/summarize.txt",
     },
     "taxonomy": {
         "remember": "./utils/prompts/taxonomy/remember.txt",
