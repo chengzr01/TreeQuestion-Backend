@@ -49,18 +49,18 @@ def create_knowledge_component(request):
             prompt = prompt.replace("<filed>", field)
             prompt = prompt.replace("<level>", level)
             prompt = prompt.replace("<ideation>", ideation)
-            knowledge = chat_gpt.call(prompt)
+            material = chat_gpt.call(prompt)
             # stage 3: summarize
             prompt = retrieve_prompt_prefix("instructions")["summarize"]
             prompt = prompt.replace("<concept>", concept)
             prompt = prompt.replace("<filed>", field)
-            prompt = prompt.replace("<knowledge>", knowledge)
-            material = chat_gpt.call(prompt)
+            prompt = prompt.replace("<knowledge>", material)
+            knowledge = chat_gpt.call(prompt)
             new_cache = Knowledge(concept=concept,
                                   level=level,
                                   field=field,
                                   ideation=ideation,
-                                  knowledge=material,
+                                  knowledge=knowledge,
                                   datetime=datetime.utcnow())
             new_cache.full_clean()
             new_cache.save()
@@ -69,7 +69,7 @@ def create_knowledge_component(request):
                 'code': 200,
                 'data': {
                     'ideation': ideation,
-                    'knowledge': material,
+                    'knowledge': knowledge,
                 }
             },
             status=200)
