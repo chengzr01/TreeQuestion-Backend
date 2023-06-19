@@ -56,8 +56,8 @@ def create_knowledge_component(request):
             prompt = prompt.replace("<filed>", field)
             prompt = prompt.replace("<knowledge>", material)
             knowledge = chat_gpt.call(prompt)
-            if old_cache:
-                old_cache.delete()
+            Knowledge.objects.filter(concept=concept, level=level,
+                                     field=field).all().delete()
             new_cache = Knowledge(concept=concept,
                                   level=level,
                                   field=field,
@@ -119,8 +119,9 @@ def create_knowledge_graph(request):
             prompt = prompt.replace("<field>", field)
             prompt = prompt.replace("<text>", knowledge_text)
             graph_text = chat_gpt.call(prompt)
-            if old_cache:
-                old_cache.delete()
+            Graph.objects.filter(concept_text=concept_text,
+                                 field=field,
+                                 knowledge_text=knowledge_text).all().delete()
             new_cache = Graph(concept_text=concept_text,
                               field=field,
                               knowledge_text=knowledge_text,
@@ -181,8 +182,8 @@ def create_key_statement(request):
             prompt = prompt.replace("<label>", label)
             chat_gpt = ChatGPT()
             key = chat_gpt.call(prompt)
-            if old_cache:
-                old_cache.delete()
+            Key.objects.filter(source=source, label=label,
+                               target=target).all().delete()
             new_cache = Key(source=source,
                             label=label,
                             target=target,
@@ -248,8 +249,10 @@ def create_distractor_statement(request):
             distractors_prompt = distractors_prompt.replace(
                 "<heuristics>", heuristics)
             distractors = chat_gpt.call(distractors_prompt)
-            if old_cache:
-                old_cache.delete()
+            Distractor.objects.filter(source=source,
+                                      label=label,
+                                      target=target,
+                                      template=template).all().delete()
             new_cache = Distractor(source=source,
                                    label=label,
                                    target=target,
@@ -356,8 +359,13 @@ def create_question(request):
             answer_prompt = retrieve_prompt_prefix("instructions")["answer"]
             answer_prompt = answer_prompt.replace("<question>", question)
             answer = chat_gpt.call(answer_prompt)
-            if old_cache:
-                old_cache.delete()
+            Question.objects.filter(
+                concept=concept,
+                field=field,
+                level=level,
+                qtype=qtype,
+                key_text=key_text,
+                distractor_text=distractor_text).all().delete()
             new_cache = Question(concept=concept,
                                  field=field,
                                  level=level,
