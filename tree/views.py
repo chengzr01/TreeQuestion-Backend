@@ -271,8 +271,6 @@ def create_question(request):
                 cache = False if body["cache"] == "false" else True
             else:
                 cache = True
-            concept = body["concept"].lower()
-            field = body["field"].lower()
             level = body["level"].lower()
             qtype = body["type"]
             keys = body["keys"]
@@ -292,8 +290,6 @@ def create_question(request):
             distractor_text += "- " + distractor_item + "\n"
 
         old_cache = Question.objects.filter(
-            concept=concept,
-            field=field,
             level=level,
             qtype=qtype,
             key_text=key_text,
@@ -311,8 +307,6 @@ def create_question(request):
             else:
                 question_prompt = retrieve_prompt_prefix(
                     "instructions")["true-false"]
-            question_prompt = question_prompt.replace("<concept>", concept)
-            question_prompt = question_prompt.replace("<field>", field)
             question_prompt = question_prompt.replace("<level>", level)
             if len(keys) > 0:
                 keys_part = retrieve_prompt_prefix("instructions")["keys-part"]
@@ -342,9 +336,7 @@ def create_question(request):
             answer_prompt = retrieve_prompt_prefix("instructions")["answer"]
             answer_prompt = answer_prompt.replace("<question>", question)
             answer = chat_gpt.call(answer_prompt)
-            new_cache = Question(concept=concept,
-                                 field=field,
-                                 level=level,
+            new_cache = Question(level=level,
                                  qtype=qtype,
                                  key_text=key_text,
                                  distractor_text=distractor_text,

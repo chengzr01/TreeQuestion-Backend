@@ -1,4 +1,4 @@
-Your task is to generate a multiple-choice question regarding <concept> in the area of <field> without explanations. The question should cover the <level> level in Bloom's Taxonomy. Use specific scenarios, stories, and examples in the real-world to create the question.
+Your task is to generate a multiple-choice question with the following statements as keys or distractors. The question should cover the <level> level in Bloom's Taxonomy. Use specific scenarios, stories, and examples to create the question.
 [distractors-part]
 [keys-part]
 ###
