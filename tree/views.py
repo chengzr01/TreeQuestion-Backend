@@ -54,7 +54,7 @@ def create_knowledge_component(request):
             prompt = retrieve_prompt_prefix("instructions")["summarize"]
             prompt = prompt.replace("<concept>", concept)
             prompt = prompt.replace("<filed>", field)
-            prompt = prompt.replace("<ideation>", knowledge)
+            prompt = prompt.replace("<knowledge>", knowledge)
             material = chat_gpt.call(prompt)
             new_cache = Knowledge(concept=concept,
                                   level=level,
@@ -69,7 +69,7 @@ def create_knowledge_component(request):
                 'code': 200,
                 'data': {
                     'ideation': ideation,
-                    'knowledge': knowledge,
+                    'knowledge': material,
                 }
             },
             status=200)
