@@ -1,4 +1,4 @@
-Here are some statements regarding the learning objectives of <concept> in the area of <field>. You task is to give some concrete explainations or detailed knowledge according to these statements. The explainations should cover the <level> level in Bloom's Taxonomy. Present the explainations in a bullet list started with '-'.
+Here are some statements regarding the learning objectives of <concept> in the area of <field>. You task is to give some concrete explainations or detailed knowledge according to these statements. The explainations should cover the <level> level in Bloom's Taxonomy. Present the explainations in a bullet list started with '-'. Please ensure your response is within 1024 tokens limit.
 ###
 <ideation>
 ###
