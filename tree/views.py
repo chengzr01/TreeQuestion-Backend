@@ -342,7 +342,9 @@ def create_question(request):
             answer_prompt = retrieve_prompt_prefix("instructions")["answer"]
             answer_prompt = answer_prompt.replace("<question>", question)
             answer = chat_gpt.call(answer_prompt)
-            new_cache = Question(level=level,
+            new_cache = Question(concept=concept,
+                                 field=field,
+                                 level=level,
                                  qtype=qtype,
                                  key_text=key_text,
                                  distractor_text=distractor_text,
