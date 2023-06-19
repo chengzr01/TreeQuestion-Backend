@@ -47,6 +47,8 @@ class Distractor(models.Model):
 
 
 class Question(models.Model):
+    concept = models.CharField(max_length=100)
+    field = models.CharField(max_length=100)
     level = models.CharField(max_length=100)
     qtype = models.CharField(max_length=100)
     key_text = models.TextField()

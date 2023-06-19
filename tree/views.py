@@ -271,6 +271,8 @@ def create_question(request):
                 cache = False if body["cache"] == "false" else True
             else:
                 cache = True
+            concept = body["concept"].lower()
+            field = body["field"].lower()
             level = body["level"].lower()
             qtype = body["type"]
             keys = body["keys"]
@@ -290,6 +292,8 @@ def create_question(request):
             distractor_text += "- " + distractor_item + "\n"
 
         old_cache = Question.objects.filter(
+            concept=concept,
+            field=field,
             level=level,
             qtype=qtype,
             key_text=key_text,
@@ -308,6 +312,8 @@ def create_question(request):
                 question_prompt = retrieve_prompt_prefix(
                     "instructions")["true-false"]
             question_prompt = question_prompt.replace("<level>", level)
+            question_prompt = question_prompt.replace("<concept>", concept)
+            question_prompt = question_prompt.replace("<field>", field)
             if len(keys) > 0:
                 keys_part = retrieve_prompt_prefix("instructions")["keys-part"]
                 question_prompt = question_prompt.replace(
