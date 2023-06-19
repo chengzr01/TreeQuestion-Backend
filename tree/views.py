@@ -165,8 +165,8 @@ def create_key_statement(request):
             source = body["source"]
             target = body["target"]
             label = body["label"]
-            concept = body["concept"]
-            field = body["field"]
+            # concept = body["concept"]
+            # field = body["field"]
         except ValueError:
             return JsonResponse({
                 'code': 400,
@@ -184,8 +184,8 @@ def create_key_statement(request):
             prompt = prompt.replace("<source>", source)
             prompt = prompt.replace("<target>", target)
             prompt = prompt.replace("<label>", label)
-            prompt = prompt.replace("<concept>", concept)
-            prompt = prompt.replace("<field>", field)
+            # prompt = prompt.replace("<concept>", concept)
+            # prompt = prompt.replace("<field>", field)
             chat_gpt = ChatGPT()
             key = chat_gpt.call(prompt)
             Key.objects.filter(source=source, label=label,
@@ -212,8 +212,8 @@ def create_distractor_statement(request):
             source = body["source"]
             label = body["label"]
             target = body["target"]
-            concept = body["concept"]
-            field = body["field"]
+            # concept = body["concept"]
+            # field = body["field"]
             template = body["template"]
         except ValueError:
             return JsonResponse({
@@ -236,8 +236,8 @@ def create_distractor_statement(request):
             key_prompt = key_prompt.replace("<source>", source)
             key_prompt = key_prompt.replace("<target>", target)
             key_prompt = key_prompt.replace("<label>", label)
-            key_prompt = key_prompt.replace("<concept>", concept)
-            key_prompt = key_prompt.replace("<field>", field)
+            # key_prompt = key_prompt.replace("<concept>", concept)
+            # key_prompt = key_prompt.replace("<field>", field)
             key = chat_gpt.call(key_prompt)
             # stage 1: create heuristics
             heuristics_prompt = retrieve_prompt_prefix(
@@ -246,8 +246,8 @@ def create_distractor_statement(request):
             heuristics_prompt = heuristics_prompt.replace("<source>", source)
             heuristics_prompt = heuristics_prompt.replace("<label>", label)
             heuristics_prompt = heuristics_prompt.replace("<target>", target)
-            heuristics_prompt = heuristics_prompt.replace("<concept>", concept)
-            heuristics_prompt = heuristics_prompt.replace("<field>", field)
+            # heuristics_prompt = heuristics_prompt.replace("<concept>", concept)
+            # heuristics_prompt = heuristics_prompt.replace("<field>", field)
             heuristics_prompt = heuristics_prompt.replace(
                 "<template>", template)
             heuristics = chat_gpt.call(heuristics_prompt)
@@ -258,9 +258,9 @@ def create_distractor_statement(request):
             distractors_prompt = distractors_prompt.replace("<source>", source)
             distractors_prompt = distractors_prompt.replace("<label>", label)
             distractors_prompt = distractors_prompt.replace("<target>", target)
-            distractors_prompt = distractors_prompt.replace(
-                "<concept>", concept)
-            distractors_prompt = distractors_prompt.replace("<field>", field)
+            # distractors_prompt = distractors_prompt.replace(
+            #     "<concept>", concept)
+            # distractors_prompt = distractors_prompt.replace("<field>", field)
             distractors_prompt = distractors_prompt.replace(
                 "<heuristics>", heuristics)
             distractors = chat_gpt.call(distractors_prompt)
