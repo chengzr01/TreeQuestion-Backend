@@ -9,7 +9,7 @@ class ChatGPT:
 
     def call(self,
              prompt,
-             temperature=0.,
+             temperature=1,
              top_p=1.,
              frequency_penalty=0,
              presence_penalty=0):
@@ -31,7 +31,7 @@ class ChatGPT:
     def call_with_sleep(self,
                         prompt,
                         sleep=20,
-                        temperature=0.,
+                        temperature=1,
                         top_p=1.,
                         frequency_penalty=0,
                         presence_penalty=0):

@@ -10,7 +10,7 @@ class GPT3:
     def call(self,
              prompt,
              engine="text-davinci-003",
-             temperature=0.,
+             temperature=1,
              top_p=1.,
              frequency_penalty=0,
              presence_penalty=0,
@@ -27,10 +27,11 @@ class GPT3:
             n=n)
         return response["choices"][0]["text"]
 
-    def call_with_sleep(prompt,
+    def call_with_sleep(self,
+                        prompt,
                         sleep=20,
                         engine="text-davinci-003",
-                        temperature=0.,
+                        temperature=1,
                         top_p=1.,
                         frequency_penalty=0,
                         presence_penalty=0,
