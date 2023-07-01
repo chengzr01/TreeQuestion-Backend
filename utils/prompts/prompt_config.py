@@ -25,6 +25,7 @@ PROMPT_CONFIGS: Final[dict] = {
         "analyze": "./utils/prompts/taxonomy/analyze.txt",
         "evaluate": "./utils/prompts/taxonomy/evaluate.txt",
         "create": "./utils/prompts/taxonomy/create.txt",
+        "definition": "./utils/prompts/taxonomy/definition.txt",
     }
 }
 

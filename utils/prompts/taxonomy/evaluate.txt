@@ -1,4 +1,4 @@
-Evaluate: Make judgments based on criteria and standards.
+Evaluate: Make judgments based on criteria and standards
 
 - Checking: Detecting inconsistencies or fallacies within a process or product; determining whether a process or product has internal consistency; detecting the effectiveness of a procedure as it is being implemented (e.g., Determine if a scientist's conclusions follow from observed data)
 - Critiquing: Detecting inconsistencies between a product and external criteria, determining whether a product has external consistency; detecting the appropriateness of a procedure for a given problem (e.g., Judge which of two methods is the best way to solve a given problem)

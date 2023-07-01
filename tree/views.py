@@ -343,9 +343,17 @@ def create_question(request):
             else:
                 question_prompt = retrieve_prompt_prefix(
                     "instructions")["true-false"]
-            question_prompt = question_prompt.replace("<level>", level)
+            definition_list = retrieve_prompt_prefix(
+                "taxonomy")["definition"].split("\n")
+            level_list = [
+                "remember", "understand", "apply", "analyze", "evaluate",
+                "level"
+            ]
             question_prompt = question_prompt.replace("<concept>", concept)
             question_prompt = question_prompt.replace("<field>", field)
+            question_prompt = question_prompt.replace("<level>", level)
+            question_prompt = question_prompt.replace(
+                "<definition>", definition_list[level_list.index(level)])
             if len(keys) > 0:
                 keys_part = retrieve_prompt_prefix("instructions")["keys-part"]
                 question_prompt = question_prompt.replace(

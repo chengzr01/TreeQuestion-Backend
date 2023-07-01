@@ -1,6 +1,8 @@
-Your task is to generate a multiple-choice question with the following statements as keys or distractors. The question should cover <concept> in the field of <field>. The question should cover the <level> level in Bloom's Taxonomy. Use specific scenarios, stories, and examples to create the question.
+Your task is to generate a multiple-choice question with the following statements as keys or distractors. The question should cover <concept> in the field of <field>. Use specific scenarios, stories, and examples to create the question.
 [distractors-part]
 [keys-part]
+###
+The question should cover the <level> level in Bloom's Taxonomy. The definition of the <level> level is: <definition>
 ###
 - Question: <Question>
 - Options: A. <Option> B. <Option> C. <Option> D. <Option>
